@@ -18,8 +18,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("br.com.munieri.explorando.marte")
-@EnableJpaRepositories({"br.com.munieri.explorando.marte.infrastructure.repository"})
+@ComponentScan("br.com.munieri.desafio.explorando.marte")
+@EnableJpaRepositories({"br.com.munieri.desafio.explorando.marte.infrastructure.repository"})
 @EnableWebMvc
 public class ApplicationInitializer {
 
@@ -52,7 +52,7 @@ public class ApplicationInitializer {
         LOGGER.info("Configurando [entityManagerFactory]...");
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("br.com.munieri.explorando.marte.infrastructure.repository");
+        entityManagerFactoryBean.setPackagesToScan("br.com.munieri.desafio.explorando.marte.infrastructure.repository");
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.hbm2ddl.auto", "create");
