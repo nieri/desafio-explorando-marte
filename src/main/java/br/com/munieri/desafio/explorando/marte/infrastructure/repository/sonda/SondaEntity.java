@@ -11,13 +11,7 @@ public class SondaEntity implements Sonda{
     private Long id;
 
     @Column
-    private String nome;
-
-    @Column
-    private String inicio;
-
-    @Column
-    private String coordenada;
+    private String posicao;
 
     @Column
     private String comandos;
@@ -25,12 +19,10 @@ public class SondaEntity implements Sonda{
     public SondaEntity() {
     }
 
-    public SondaEntity(Long id, String nome, String inicio, String coordenada, String comando) {
+    public SondaEntity(Long id, String posicao, String comandos) {
         this.id = id;
-        this.nome = nome;
-        this.inicio = inicio;
-        this.coordenada = coordenada;
-        this.comandos = comando;
+        this.posicao = posicao;
+        this.comandos = comandos;
     }
 
     @Override
@@ -39,18 +31,8 @@ public class SondaEntity implements Sonda{
     }
 
     @Override
-    public String nome() {
-        return nome;
-    }
-
-    @Override
-    public String inicio() {
-        return inicio;
-    }
-
-    @Override
-    public String coordenadas() {
-        return coordenada;
+    public String posicao() {
+        return posicao;
     }
 
     @Override

@@ -36,9 +36,7 @@ public class SondaEndPoint {
 
         Sonda sonda = SondaBuilder.newBuilder()
                 .id(dto.getId())
-                .nome(dto.getNome())
-                .inicio(dto.getInicio())
-                .coordenadas(dto.getCoordenadas())
+                .posicao(dto.getPosicao())
                 .comandos(dto.getComandos())
                 .build();
 
@@ -50,8 +48,8 @@ public class SondaEndPoint {
     }
 
     private void check(SondaDTO dto) {
-        if(StringUtil.isBlank(dto.getInicio())) {
-            throw new IllegalArgumentException("inicio_obrigatorio");
+        if(StringUtil.isBlank(dto.getPosicao())) {
+            throw new IllegalArgumentException("posicao_obrigatoria");
         }
     }
 }

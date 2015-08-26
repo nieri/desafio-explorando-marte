@@ -13,36 +13,22 @@ public class SondaBuilder {
 
         SondaBuilderStep id(Long id);
 
-        SondaBuilderNomeStep nome(String nome);
+        SondaBuilderPosicaoStep posicao(String Inicio);
 
     }
 
-    public interface SondaBuilderNomeStep {
-
-        SondaBuilderInicioStep inicio(String Inicio);
-    }
-
-    public interface SondaBuilderInicioStep {
-
-        SondaBuilderCoordenadasStep coordenadas(String coordenadas);
-    }
-
-    public interface SondaBuilderCoordenadasStep {
-
+    public interface SondaBuilderPosicaoStep {
         SondaBuilderFinalStep comandos(String comandos);
     }
 
     public interface SondaBuilderFinalStep {
-
         Sonda build();
     }
 
-    private static class Steps implements SondaBuilderStep, SondaBuilderNomeStep, SondaBuilderInicioStep, SondaBuilderCoordenadasStep, SondaBuilderFinalStep {
+    private static class Steps implements SondaBuilderStep, SondaBuilderPosicaoStep, SondaBuilderFinalStep {
 
         private Long id;
-        private String nome;
-        private String inicio;
-        private String coordenadas;
+        private String posicao;
         private String comandos;
 
         @Override
@@ -52,14 +38,8 @@ public class SondaBuilder {
         }
 
         @Override
-        public SondaBuilderNomeStep nome(String nome) {
-            this.nome = nome;
-            return this;
-        }
-
-        @Override
-        public SondaBuilderInicioStep inicio(String inicio) {
-            this.inicio = inicio;
+        public SondaBuilderPosicaoStep posicao(String inicio) {
+            this.posicao = inicio;
             return this;
         }
 
@@ -71,13 +51,8 @@ public class SondaBuilder {
 
         @Override
         public Sonda build() {
-            return new SondaEntity(id, nome, inicio, coordenadas, comandos);
+            return new SondaEntity(id, posicao, comandos);
         }
 
-        @Override
-        public SondaBuilderCoordenadasStep coordenadas(String coordenadas) {
-            this.coordenadas = coordenadas;
-            return this;
-        }
     }
 }

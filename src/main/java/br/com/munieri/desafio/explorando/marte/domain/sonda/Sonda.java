@@ -4,11 +4,7 @@ public interface Sonda {
 
     Long id();
 
-    String nome();
-
-    String inicio();
-
-    String coordenadas();
+    String posicao();
 
     String comandos();
 }
