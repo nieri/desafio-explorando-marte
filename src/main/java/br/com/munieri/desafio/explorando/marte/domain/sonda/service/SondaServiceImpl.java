@@ -5,7 +5,9 @@ import br.com.munieri.desafio.explorando.marte.domain.sonda.SondaNotFound;
 import br.com.munieri.desafio.explorando.marte.infrastructure.repository.sonda.SondaEntity;
 import br.com.munieri.desafio.explorando.marte.infrastructure.repository.sonda.SondaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SondaServiceImpl implements SondaService{
 
     @Autowired

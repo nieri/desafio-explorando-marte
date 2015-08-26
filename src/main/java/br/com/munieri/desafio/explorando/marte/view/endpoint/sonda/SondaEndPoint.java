@@ -7,11 +7,10 @@ import org.eclipse.jetty.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping
 public class SondaEndPoint {
 
     @Autowired
@@ -27,7 +26,7 @@ public class SondaEndPoint {
         return parseToResponse(sonda, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/sonda{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sonda/{id}", method = RequestMethod.GET)
     public HttpStatus get(@PathVariable Long id) {
 
         return HttpStatus.OK;

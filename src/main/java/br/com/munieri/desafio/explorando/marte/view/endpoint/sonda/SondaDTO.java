@@ -2,9 +2,6 @@ package br.com.munieri.desafio.explorando.marte.view.endpoint.sonda;
 
 import br.com.munieri.desafio.explorando.marte.domain.sonda.Sonda;
 
-/**
- * Created by munieri on 24/08/15.
- */
 public class SondaDTO {
 
     private Long id;
