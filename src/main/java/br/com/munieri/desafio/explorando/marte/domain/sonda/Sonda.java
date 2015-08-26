@@ -7,5 +7,9 @@ public interface Sonda {
     String posicao();
 
     String comandos();
+
+    String posicaoAtual();
+
+    void posicaoAtual(String posicaoAtual);
 }
 

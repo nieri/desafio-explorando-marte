@@ -7,6 +7,7 @@ public class SondaDTO {
     private Long id;
     private String posicao;
     private String comandos;
+    private String posicaoAtual;
 
     public SondaDTO() {
     }
@@ -15,6 +16,7 @@ public class SondaDTO {
         this.id = sonda.id();
         this.posicao = sonda.posicao();
         this.comandos = sonda.comandos();
+        this.posicaoAtual = sonda.posicaoAtual();
     }
 
     public Long getId() {
@@ -39,5 +41,13 @@ public class SondaDTO {
 
     public void setComandos(String comandos) {
         this.comandos = comandos;
+    }
+
+    public String getPosicaoAtual() {
+        return posicaoAtual;
+    }
+
+    public void setPosicaoAtual(String posicaoAtual) {
+        this.posicaoAtual = posicaoAtual;
     }
 }

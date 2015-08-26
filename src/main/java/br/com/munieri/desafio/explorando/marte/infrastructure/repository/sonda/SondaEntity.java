@@ -16,13 +16,17 @@ public class SondaEntity implements Sonda{
     @Column
     private String comandos;
 
+    @Column
+    private String posicaoAtual;
+
     public SondaEntity() {
     }
 
-    public SondaEntity(Long id, String posicao, String comandos) {
+    public SondaEntity(Long id, String posicao, String comandos, String posicaoAtual) {
         this.id = id;
         this.posicao = posicao;
         this.comandos = comandos;
+        this.posicaoAtual = posicaoAtual;
     }
 
     @Override
@@ -38,6 +42,16 @@ public class SondaEntity implements Sonda{
     @Override
     public String comandos() {
         return comandos;
+    }
+
+    @Override
+    public String posicaoAtual() {
+        return posicaoAtual;
+    }
+
+    @Override
+    public void posicaoAtual(String posicaoAtual) {
+        this.posicaoAtual = posicaoAtual;
     }
 }
 
