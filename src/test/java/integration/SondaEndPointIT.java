@@ -58,18 +58,48 @@ public class SondaEndPointIT extends IntegrationServer {
                 .body("message", equalTo("Informe o compo posicao"));
     }
 
+    private void criaSondaComContentTypeErrado() {
+        given()
+                .contentType(ContentType.HTML)
+                .body("{ \"id\": \"1\",\"posicao\": \"1 2 N\", \"comandos\": \"LMLMLMLMM\"}")
+                .when()
+                .post("http://127.0.0.1:" + jettyPort + "/sonda")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE);
+    }
+
+    private void criaSondaSemInformacoes() {
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .post("http://127.0.0.1:" + jettyPort + "/sonda")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_BAD_REQUEST);
+    }
+
     @Test
     public void deveria_criar_sonda() {
         criaSonda();
     }
 
     @Test
-    public void deveria_lancar_erro_ao_sonda_sem_comandos() {
+    public void deveria_lancar_excecao_ao_criar_sonda_sem_comandos() {
         criaSondaSemComandos();
     }
 
     @Test
-    public void deveria_lancar_erro_ao_sonda_sem_posicao() {
+    public void deveria_lancar_excecao_ao_criar_sonda_sem_posicao() {
         criaSondaSemPosicao();
+    }
+    @Test
+    public void deveria_lancar_excecao_quando_nao_informar_media_type_correto() {
+        criaSondaComContentTypeErrado();
+    }
+
+    @Test
+    public void deveria_lancar_excecao_quando_nao_informar_parametros_corretos_correto() {
+        criaSondaSemInformacoes();
     }
 }
