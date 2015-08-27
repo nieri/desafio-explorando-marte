@@ -8,22 +8,22 @@ public enum Coordenada {
 
     NORTH(1, "N"), EAST(2, "E"), SOUTH(3, "S"), WEST(4, "W");
 
-    private Integer direçao;
+    private Integer direcao;
     private String descricao;
 
-    Coordenada(Integer direçao, String descricao) {
-        this.direçao = direçao;
+    Coordenada(Integer direcao, String descricao) {
+        this.direcao = direcao;
         this.descricao = descricao;
     }
 
     public Integer val() {
-        return direçao;
+        return direcao;
     }
 
     public static Coordenada direcao(int i) {
 
         List<Coordenada> direcoes = new ArrayList<Coordenada>(EnumSet.allOf(Coordenada.class));
-        return direcoes.get(i);
+        return direcoes.get(--i);
     }
 
     public static Integer direcaoValue(String value) {
@@ -31,7 +31,7 @@ public enum Coordenada {
         List<Coordenada> direcoes = new ArrayList<Coordenada>(EnumSet.allOf(Coordenada.class));
         for (Coordenada direcao : direcoes){
             if(direcao.descricao.equals(value)){
-                return direcao.direçao;
+                return direcao.direcao;
             }
         }
         throw new IllegalArgumentException("Direcao Invalida!");

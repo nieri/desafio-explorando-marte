@@ -21,14 +21,17 @@ public class SondaServiceImpl implements SondaService{
     @Override
     public Sonda create(Sonda sonda) {
 
-        this.processa(sonda);
-
-        return persist(sonda);
+        return persist(processa(sonda));
     }
 
     @Override
     public Sonda update(Sonda sonda) throws SondaNotFound {
         return null;
+    }
+
+    @Override
+    public Sonda find(Long id) throws SondaNotFound {
+        return repository.findOne(id);
     }
 
     private Sonda persist(Sonda sonda) {

@@ -22,11 +22,10 @@ public class SondaEntity implements Sonda{
     public SondaEntity() {
     }
 
-    public SondaEntity(Long id, String posicao, String comandos, String posicaoAtual) {
+    public SondaEntity(Long id, String posicao, String comandos) {
         this.id = id;
         this.posicao = posicao;
         this.comandos = comandos;
-        this.posicaoAtual = posicaoAtual;
     }
 
     @Override

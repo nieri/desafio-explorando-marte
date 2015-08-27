@@ -8,4 +8,6 @@ public interface SondaService {
     Sonda create(Sonda sonda);
 
     Sonda update(Sonda sonda) throws SondaNotFound;
+
+    Sonda find(Long id) throws SondaNotFound;
 }

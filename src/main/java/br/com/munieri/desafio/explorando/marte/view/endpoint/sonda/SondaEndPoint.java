@@ -3,11 +3,14 @@ package br.com.munieri.desafio.explorando.marte.view.endpoint.sonda;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.Sonda;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.builder.SondaBuilder;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.service.SondaService;
+import br.com.munieri.desafio.explorando.marte.view.endpoint.ErrorDTO;
 import org.eclipse.jetty.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping
@@ -27,9 +30,9 @@ public class SondaEndPoint {
     }
 
     @RequestMapping(value = "/sonda/{id}", method = RequestMethod.GET)
-    public HttpStatus get(@PathVariable Long id) {
+    public ResponseEntity get(@PathVariable Long id) {
 
-        return HttpStatus.OK;
+        return parseToResponse(sondaService.find(id), HttpStatus.CREATED);
     }
 
     private Sonda criaSonda(SondaDTO dto) {
@@ -48,8 +51,21 @@ public class SondaEndPoint {
     }
 
     private void check(SondaDTO dto) {
-        if(StringUtil.isBlank(dto.getPosicao())) {
-            throw new IllegalArgumentException("posicao_obrigatoria");
+        checkCampo(dto.getPosicao(), "posicao");
+        checkCampo(dto.getComandos(), "comandos");
+    }
+
+    private void checkCampo(String campo, String codigo) {
+        if (StringUtil.isBlank(campo)) {
+            throw new IllegalArgumentException(codigo);
         }
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorDTO posicaoInvalidaHandler(IllegalArgumentException ex, HttpServletResponse response) {
+        return new ErrorDTO(ex.getMessage(), "Informe o compo " + ex.getMessage());
+    }
+
 }
