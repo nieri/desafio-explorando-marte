@@ -65,7 +65,7 @@ public class SondaEndPoint {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorDTO posicaoInvalidaHandler(IllegalArgumentException ex, HttpServletResponse response) {
-        return new ErrorDTO(ex.getMessage(), "Informe o compo " + ex.getMessage());
+        return new ErrorDTO(ex.getMessage(), "Informe o campo " + ex.getMessage());
     }
 
 }
