@@ -4,6 +4,7 @@ import br.com.munieri.desafio.explorando.marte.domain.sonda.Sonda;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.builder.SondaBuilder;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.service.SondaService;
 import br.com.munieri.desafio.explorando.marte.view.endpoint.ErrorDTO;
+import br.com.munieri.desafio.explorando.marte.view.endpoint.validator.SondaValidation;
 import org.eclipse.jetty.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class SondaEndPoint {
     @RequestMapping(value = "/sonda", method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody SondaDTO dto) {
 
-        check(dto);
+        SondaValidation.check(dto);
 
         Sonda sonda = criaSonda(dto);
 
@@ -50,22 +51,10 @@ public class SondaEndPoint {
         return new ResponseEntity<>(new SondaDTO(sonda), status);
     }
 
-    private void check(SondaDTO dto) {
-        checkCampo(dto.getPosicao(), "posicao");
-        checkCampo(dto.getComandos(), "comandos");
-    }
-
-    private void checkCampo(String campo, String codigo) {
-        if (StringUtil.isBlank(campo)) {
-            throw new IllegalArgumentException(codigo);
-        }
-    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorDTO posicaoInvalidaHandler(IllegalArgumentException ex, HttpServletResponse response) {
         return new ErrorDTO(ex.getMessage(), "Informe o campo " + ex.getMessage());
     }
-
 }
