@@ -20,13 +20,13 @@ public enum Coordenada {
         return direcao;
     }
 
-    public static Coordenada direcao(int i) {
+    public static Coordenada direcaoStringValue(int i) {
 
         List<Coordenada> direcoes = new ArrayList<Coordenada>(EnumSet.allOf(Coordenada.class));
         return direcoes.get(--i);
     }
 
-    public static Integer direcaoValue(String value) {
+    public static Integer direcaoIntValue(String value) {
 
         List<Coordenada> direcoes = new ArrayList<Coordenada>(EnumSet.allOf(Coordenada.class));
         for (Coordenada direcao : direcoes){
