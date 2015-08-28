@@ -3,11 +3,11 @@ package br.com.munieri.desafio.explorando.marte.domain.sonda.service;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.Sonda;
 import br.com.munieri.desafio.explorando.marte.domain.sonda.SondaNotFound;
 
+import java.util.List;
+
 public interface SondaService {
 
-    Sonda create(Sonda sonda);
-
-    Sonda update(Sonda sonda) throws SondaNotFound;
+    List<Sonda> create(List<Sonda> sondas);
 
     Sonda find(Long id) throws SondaNotFound;
 }

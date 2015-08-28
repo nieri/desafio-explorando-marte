@@ -8,6 +8,9 @@ import br.com.munieri.desafio.explorando.marte.infrastructure.repository.sonda.S
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class SondaServiceImpl implements SondaService{
 
@@ -15,17 +18,16 @@ public class SondaServiceImpl implements SondaService{
     SondaRepository repository;
 
     @Override
-    public Sonda create(Sonda sonda) {
+    public List<Sonda> create(List<Sonda> sondas) {
 
-        Controlador controlador = new Controlador((SondaEntity)sonda);
-        controlador.processa(sonda.comandos());
+        List<Sonda> sondasGravadas = new ArrayList<>();
 
-        return persist(sonda);
-    }
-
-    @Override
-    public Sonda update(Sonda sonda) throws SondaNotFound {
-        return null;
+        for (Sonda sonda :sondas) {
+            Controlador controlador = new Controlador((SondaEntity) sonda);
+            controlador.processa(sonda.comandos());
+            sondasGravadas.add(persist(sonda));
+        }
+        return sondasGravadas;
     }
 
     @Override

@@ -91,9 +91,6 @@ public class ApplicationServer implements WebServer{
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation(CONFIG_LOCATION);
         context.getEnvironment().setDefaultProfiles(DEFAULT_PROFILE);
-//        if (hasText(customProfile)) {
-//            context.getEnvironment().setDefaultProfiles(customProfile);
-//        }
 
         return context;
     }
