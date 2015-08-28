@@ -41,7 +41,7 @@ public class SondaEndPointIT extends IntegrationServer {
                 .statusCode(HttpStatus.SC_BAD_REQUEST)
                 .body("code", equalTo("comandos"))
                 .and()
-                .body("message", equalTo("Informe o compo comandos"));
+                .body("message", equalTo("Informe o campo comandos"));
     }
 
     private void criaSondaSemPosicao() {
@@ -55,7 +55,7 @@ public class SondaEndPointIT extends IntegrationServer {
                 .statusCode(HttpStatus.SC_BAD_REQUEST)
                 .body("code", equalTo("posicao"))
                 .and()
-                .body("message", equalTo("Informe o compo posicao"));
+                .body("message", equalTo("Informe o campo posicao"));
     }
 
     private void criaSondaComContentTypeErrado() {
